@@ -34,6 +34,8 @@ class IsAnyoneInTheMine:
     def check_and_refresh_auth(self):
         if not self.oauth_token or not self.oauth_token.is_valid():
             self.oauth_token = self._get_oauth_token()
+            # writes token to file as it is new
+            self.write_oauth_token_to_file(self.token_file_path, self.oauth_token)
         if not self.user_token or not self.oauth_token.is_valid():
             self.user_token = self._get_user_token()
         if not self.xsts_token or not self.xsts_token.is_valid():
