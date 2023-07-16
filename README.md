@@ -1,5 +1,5 @@
 # IsAnyoneInTheMine
-![IsAnyoneInTheMine](docs\imgs\title.png)
+![IsAnyoneInTheMine](docs/imgs/title.png)
 
  Checks if anyone is in minecraft realm
 
@@ -38,7 +38,7 @@ Code inside `/server`
 
 Homepage will render text with YES or NO if any users are online in the realm.
 
-![Homepage Screenshot](docs\imgs\homepage_screenshot.png)
+![Homepage Screenshot](docs/imgs/homepage_screenshot.png)
 
 #### Endpoint
 
