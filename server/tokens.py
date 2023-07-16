@@ -21,6 +21,7 @@ class Token(ABC):
     def json(self):
         return json.dumps(asdict(self), default=str)
     
+
 @dataclass
 class OAuthToken(Token):
     token_type: str
@@ -37,7 +38,6 @@ class OAuthToken(Token):
 
     def is_valid(self):
         return (self.issued + timedelta(seconds=self.expires_in)) > now_datetime()
-
 
 
 @dataclass
@@ -58,6 +58,7 @@ class UserToken(Token):
     def is_valid(self):
         return self.NotAfter > now_datetime()
     
+
 @dataclass
 class XSTSToken(UserToken):
     def get_auth_header(self):
