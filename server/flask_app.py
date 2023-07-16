@@ -20,8 +20,8 @@ def is_anyone_in_the_mine():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "{0}<body><h1>404 - Check your map, or craft one if you don't have it!</h1></body>".format(STYLEHEADER)
+    return "{0}<body><h1>404 - Check your map, or craft one if you don't have it!</h1></body>".format(STYLEHEADER), 404
 
 @app.errorhandler(500)
 def internal_error(e):
-    return "{0}<body><h1>500 - A creeper got into our server!</h1><p>Try again later :(</p></body>".format(STYLEHEADER)
+    return "{0}<body><h1>500 - A creeper got into our server!</h1><p>Try again later :(</p></body>".format(STYLEHEADER), 500
