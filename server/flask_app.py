@@ -1,18 +1,26 @@
 from flask import Flask
 from dotenv import load_dotenv
+from jinja2 import Environment, FileSystemLoader
+from pathlib import Path
 
 from isanyoneinthemine import IsAnyoneInTheMine
+
+TEMPLATES_DIR = Path('templates')
+PAGE_TEMPLATE = 'page.html'
 
 load_dotenv()
 mine = IsAnyoneInTheMine()
 app = Flask(__name__)
-
-STYLEHEADER = "<head><link rel=\"stylesheet\" href=\"static/styles.css\"></head>"
+environment = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
+template = environment.get_template(PAGE_TEMPLATE)
 
 @app.route("/")
 def display_homepage():
     status_text = "YES" if mine.is_anyone_in_the_mine() else "NO"
-    return "{0}<body><h1>Is Anyone in the Mine? <b>{1}</b></h1></body>".format(STYLEHEADER, status_text)
+    return template.render(
+        PAGE_NAME="IsAnyoneInTheMine?",
+        PAGE_BODY="<h1>Is Anyone in the Mine? <b>{0}</b></h1>".format(status_text)
+    )
 
 @app.route("/api/isanyoneinthemine", methods=['GET'])
 def is_anyone_in_the_mine():
@@ -20,8 +28,14 @@ def is_anyone_in_the_mine():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return "{0}<body><h1>404 - Check your map, or craft one if you don't have it!</h1></body>".format(STYLEHEADER), 404
+    return template.render(
+        PAGE_NAME="IsAnyoneInTheMine? - 404",
+        PAGE_BODY="<h1>404 - Check your map, or craft one if you don't have it!</h1>"
+    ), 404
 
 @app.errorhandler(500)
 def internal_error(e):
-    return "{0}<body><h1>500 - A creeper got into our server!</h1><p>Try again later :(</p></body>".format(STYLEHEADER), 500
+        return template.render(
+        PAGE_NAME="IsAnyoneInTheMine? - 404",
+        PAGE_BODY="<h1>500 - A creeper got into our server!</h1><p>Try again later :(</p>"
+    ), 500
