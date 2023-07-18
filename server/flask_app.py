@@ -5,7 +5,7 @@ from pathlib import Path
 
 from isanyoneinthemine import IsAnyoneInTheMine
 
-TEMPLATES_DIR = Path('templates')
+TEMPLATES_DIR =  Path(__file__).parent.resolve() / 'templates'
 PAGE_TEMPLATE = 'page.html'
 
 load_dotenv()
