@@ -24,9 +24,12 @@ Code inside `/server`
 
 1. Install requirements:
     - `pip install -r requirements.txt`
+1. Do first-time auth (I used OpenXbox for convenience)
+    - https://github.com/OpenXbox/xbox-webapi-python#how-to-use
+    - _Note - We use the tokens.json file so make note of its location for the .env file_
 1. Create `.env` file
     - Copy `.env.template` and rename it `.env`
-    - Populate it with Client (Application) ID and Secret you created in the requirements for Microsoft Azure
+    - Populate it with Client (Application) ID and Secret you created in the requirements for Microsoft Azure along with the tokens.json location from the first-time auth
 
 ### Run Locally
 
@@ -40,11 +43,11 @@ Homepage will render text with YES or NO if any users are online in the realm.
 
 ![Homepage Screenshot](docs/imgs/homepage_screenshot.png)
 
-#### Endpoint
+### Endpoint
 
 `/api/isanyoneinthemine`
 
-### Response
+#### Response
 
 ```json
 {
